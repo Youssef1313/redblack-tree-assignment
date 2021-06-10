@@ -15,5 +15,5 @@ class RedBlackNode:
         if self.value == value:
             return True
         if self.value > value:
-            return self.left != None and self.left.search(value)
-        return self.right != None and self.right.search(value)
+            return self.left is not None and self.left.search(value)
+        return self.right is not None and self.right.search(value)
