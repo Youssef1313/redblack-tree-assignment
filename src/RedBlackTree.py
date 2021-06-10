@@ -1,4 +1,4 @@
-from RedBlackNode import RedBlackNode
+from RedBlackNode import RedBlackNode, Color
 
 
 class RedBlackTree:
@@ -10,4 +10,5 @@ class RedBlackTree:
 
     def insert(self, value):
         if self.root is None:
-            self.root = RedBlackNode('b', value, None)
+            self.root = RedBlackNode(Color.BLACK, value, None)
+            return
