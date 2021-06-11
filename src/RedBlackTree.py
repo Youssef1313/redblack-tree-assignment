@@ -81,6 +81,21 @@ class RedBlackTree:
         x.parent = y
         y.left = x
 
-    def rotate_right(self, x):
-        # TODO: write it.
-        pass
+    def rotate_right(self, y):
+        if not isinstance(y, RedBlackNode):
+            return None
+
+        x = y.left
+        y.left = x.right
+        if x.right is not None:
+            x.right.parent = y
+
+        x.parent = y.parent
+        if y is not self.root:
+            if y.parent.right is y:
+                y.parent.right = x
+            else:
+                x.parent.left = x
+
+        y.parent = x
+        x.left = y
