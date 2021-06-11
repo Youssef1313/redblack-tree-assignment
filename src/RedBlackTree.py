@@ -9,11 +9,19 @@ class RedBlackTree:
         return self.root is not None and self.root.search(value)
 
     def fixup(self, node):
+        if self.root is node:
+            return self.root.change_color()\
+                if self.root.color == Color.RED else None
+
         # case 0: parent is black no problem
         if node.parent.color == Color.BLACK or\
-             not isinstance(node, RedBlackNode):
+                not isinstance(node, RedBlackNode):
             return None
-
+        '''
+        no need to check that the grand parent is not None since
+        if it is not exist then the parent will be the root and must be black
+        so we won't reach this line.
+        '''
         # case 1: uncle y is red
         grand_parent = node.parent.parent
         if grand_parent.right.color == grand_parent.left.color == Color.RED:
@@ -37,9 +45,6 @@ class RedBlackTree:
 
             node.parent.change_color()
             grand_parent.change_color()
-
-        return self.root.change_color()\
-            if self.root.color == Color.RED else None
 
     def insert(self, value):
         if self.root is None:
