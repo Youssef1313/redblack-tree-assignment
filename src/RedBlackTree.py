@@ -16,7 +16,7 @@ class RedBlackTree:
         # case 0: parent is black no problem
         if node.parent.color == Color.BLACK or\
                 not isinstance(node, RedBlackNode):
-            return None
+            return
         '''
         no need to check that the grand parent is not None since
         if it is not exist then the parent will be the root and must be black
@@ -49,11 +49,11 @@ class RedBlackTree:
     def insert(self, value):
         if self.root is None:
             self.root = RedBlackNode(Color.BLACK, value, None)
-            return None
+            return
 
         node = self.search(value)
         if node.value == value:
-            return None
+            return
 
         new_node = RedBlackNode(value, parent=node)
         if node.value > value:
@@ -64,7 +64,7 @@ class RedBlackTree:
 
     def rotate_left(self, x):
         if not isinstance(x, RedBlackNode):
-            return None
+            return
 
         y = x.right
         x.right = y.left
@@ -83,7 +83,7 @@ class RedBlackTree:
 
     def rotate_right(self, y):
         if not isinstance(y, RedBlackNode):
-            return None
+            return
 
         x = y.left
         y.left = x.right
