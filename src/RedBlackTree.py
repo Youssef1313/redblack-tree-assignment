@@ -11,4 +11,4 @@ class RedBlackTree:
     def insert(self, value):
         if self.root is None:
             self.root = RedBlackNode(Color.BLACK, value, None)
-            return
+            return None
