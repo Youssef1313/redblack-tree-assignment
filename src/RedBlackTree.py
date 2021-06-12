@@ -74,7 +74,6 @@ class RedBlackTree:
             self.root.color = Color.BLACK
         self.size += 1
 
-
     def bst_insert(self, node, value):
         if node.value == value:
             raise ValueError("The value is already in the tree.")
