@@ -96,6 +96,7 @@ class RedBlackTree:
 
         x.parent = y
         y.left = x
+        self.root = y if self.root is x else self.root
 
     def rotate_right(self, y):
         if not isinstance(y, RedBlackNode):
@@ -115,6 +116,7 @@ class RedBlackTree:
 
         y.parent = x
         x.left = y
+        self.root = x if self.root is y else self.root
 
     def pretty_print(self):
         self.__print_helper(self.root, "", True)
