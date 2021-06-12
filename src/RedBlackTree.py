@@ -20,10 +20,10 @@ class RedBlackTree:
         return self.size
 
     def insert(self, value):
-        self.size += 1
         if self.root is None:
             self.root = RedBlackNode(Color.BLACK, value, None)
             node = self.root
+            self.size += 1
             return
         else:
             node = self.bst_insert(self.root, value)
@@ -72,6 +72,8 @@ class RedBlackTree:
                         if g.right == p and p.left == node:
                             self.left_rotate(p)
             self.root.color = Color.BLACK
+        self.size += 1
+
 
     def bst_insert(self, node, value):
         if node.value == value:
