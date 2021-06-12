@@ -56,7 +56,7 @@ class RedBlackTree:
 
     def insert(self, value):
         if self.root is None:
-            self.root = RedBlackNode(Color.BLACK, value, None)
+            self.root = RedBlackNode(value, Color.BLACK, None)
             return
 
         node = self.search(value)
@@ -126,3 +126,15 @@ class RedBlackTree:
             print(str(node.value) + "(" + s_color + ")")
             self.__print_helper(node.left, indent, False)
             self.__print_helper(node.right, indent, True)
+
+
+tree = RedBlackTree()
+tree.insert(11)
+tree.insert(3)
+tree.insert(13)
+tree.insert(1)
+tree.insert(7)
+tree.insert(15)
+tree.insert(5)
+tree.insert(8)
+tree.pretty_print()
