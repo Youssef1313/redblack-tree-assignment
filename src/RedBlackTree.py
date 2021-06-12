@@ -38,7 +38,10 @@ class RedBlackTree:
         '''
         # case 1: uncle y is red
         grand_parent = node.parent.parent
-        if grand_parent.right.color == grand_parent.left.color == Color.RED:
+        if grand_parent.left is not None and\
+           grand_parent.right is not None and\
+           grand_parent.right.color == grand_parent.left.color == Color.RED:
+
             grand_parent.change_color()
             grand_parent.right.change_color()
             grand_parent.left.change_color()
