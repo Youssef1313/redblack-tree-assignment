@@ -58,7 +58,7 @@ class RedBlackTree:
             # Also recolor grantparent, but only if it's not the root.
             uncle.change_color()
             node.parent.change_color()
-            if node.parent.parent is self.root:
+            if node.parent.parent is not self.root:
                 node.parent.parent.change_color()
 
             if node.parent.parent.color == Color.RED and\
@@ -98,6 +98,8 @@ class RedBlackTree:
         #      2(R)
         if node is node.parent.left and\
            node.parent is node.parent.parent.left:
+            node.parent.change_color()
+            node.parent.parent.change_color()
             self.right_rotate(node.parent.parent)
             return
 
@@ -109,8 +111,40 @@ class RedBlackTree:
         #              7(R)
         if node is node.parent.right and\
            node.parent is node.parent.parent.right:
+            node.parent.change_color()
+            node.parent.parent.change_color()
             self.left_rotate(node.parent.parent)
             return
+
+    def left_rotate(self, x):
+        y = x.right
+        x.right = y.left
+        if y.left is not None:
+            y.left.parent = x
+        y.parent = x.parent
+        if x.parent is None:
+            self.root = y
+        elif x == x.parent.left:
+            x.parent.left = y
+        else:
+            x.parent.right = y
+        y.left = x
+        x.parent = y
+
+    def right_rotate(self, x):
+        y = x.left
+        x.left = y.right
+        if y.right is not None:
+            y.right.parent = x
+        y.parent = x.parent
+        if x.parent is None:
+            self.root = y
+        elif x == x.parent.right:
+            x.parent.right = y
+        else:
+            x.parent.left = y
+        y.right = x
+        x.parent = y
 
     def pretty_print(self):
         self.__print_helper(self.root, "", True)
@@ -130,3 +164,47 @@ class RedBlackTree:
             print(str(node.value) + "(" + s_color + ")")
             self.__print_helper(node.left, indent, False)
             self.__print_helper(node.right, indent, True)
+
+tree = RedBlackTree()
+tree.insert(11)
+tree.pretty_print()
+print("============")
+tree.insert(3)
+tree.pretty_print()
+print("============")
+tree.insert(13)
+tree.pretty_print()
+print("============")
+tree.insert(1)
+tree.pretty_print()
+print("============")
+tree.insert(7)
+tree.pretty_print()
+print("============")
+tree.insert(15)
+tree.pretty_print()
+print("============")
+tree.insert(5)
+tree.pretty_print()
+print("============")
+tree.insert(8)
+tree.pretty_print()
+print("============")
+
+
+# tree = RedBlackTree()
+# tree.insert(5)
+# tree.pretty_print()
+# print("=============")
+# tree.insert(4)
+# tree.pretty_print()
+# print("=============")
+# tree.insert(3)
+# tree.pretty_print()
+# print("=============")
+# tree.insert(6)
+# tree.pretty_print()
+# print("=============")
+# tree.insert(7)
+# tree.pretty_print()
+# print("=============")
