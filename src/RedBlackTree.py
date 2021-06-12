@@ -8,13 +8,19 @@ class RedBlackTree:
 
     def _search(self, node, value):
         if node.value == value:
-            return True
+            return node
         if node.value > value:
-            return node.left is not None and self._search(node.left, value)
-        return node.right is not None and self._search(node.right, value)
+            if node.left is None:
+                return node
+            return self._search(node.left, value)
+
+        if node.right is None:
+            return node
+        return self._search(node.right, value)
 
     def search(self, value):
-        return self.root is not None and self._search(self.root, value)
+        return self.root is not None and\
+               self._search(self.root, value).value == value
 
     def fixup(self, node):
         if self.root is node:
@@ -59,7 +65,7 @@ class RedBlackTree:
             self.root = RedBlackNode(value, Color.BLACK, None)
             return
 
-        node = self.search(value)
+        node = self._search(self.root, value)
         if node.value == value:
             return
 
@@ -128,13 +134,20 @@ class RedBlackTree:
             self.__print_helper(node.right, indent, True)
 
 
+# tree = RedBlackTree()
+# tree.insert(11)
+# tree.insert(3)
+# tree.insert(13)
+# tree.insert(1)
+# tree.insert(7)
+# tree.insert(15)
+# tree.insert(5)
+# tree.insert(8)
+# tree.pretty_print()
+
 tree = RedBlackTree()
-tree.insert(11)
-tree.insert(3)
-tree.insert(13)
-tree.insert(1)
-tree.insert(7)
-tree.insert(15)
 tree.insert(5)
-tree.insert(8)
-tree.pretty_print()
+tree.insert(4)
+tree.insert(3)
+tree.insert(6)
+tree.insert(7)
