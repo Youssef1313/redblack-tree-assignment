@@ -28,8 +28,8 @@ class RedBlackTree:
                 if self.root.color == Color.RED else None
 
         # case 0: parent is black no problem
-        if node.parent.color == Color.BLACK or\
-                not isinstance(node, RedBlackNode):
+        if not isinstance(node, RedBlackNode) or\
+           node.parent.color == Color.BLACK:
             return
         '''
         no need to check that the grand parent is not None since
@@ -46,19 +46,18 @@ class RedBlackTree:
 
         # case 2: uncle y is black, node is a right child
         # case 3: uncle y is black, node is a left child
-        if grand_parent.right.color != grand_parent.left.color:
-            if grand_parent.left is node.parent:
-                if node.parent.right is node:
-                    self.rotate_left(node.parent)
-                self.rotate_right(grand_parent)
+        if grand_parent.left is node.parent:
+            if node.parent.right is node:
+                self.rotate_left(node.parent)
+            self.rotate_right(grand_parent)
 
-            else:
-                if node.parent.left is node:
-                    self.rotate_right(node.parent)
-                self.rotate_left(grand_parent)
+        else:
+            if node.parent.left is node:
+                self.rotate_right(node.parent)
+            self.rotate_left(grand_parent)
 
-            node.parent.change_color()
-            grand_parent.change_color()
+        node.parent.change_color()
+        grand_parent.change_color()
 
     def insert(self, value):
         if self.root is None:
