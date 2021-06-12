@@ -8,11 +8,33 @@ class Color(Enum):
 
 class RedBlackNode:
     def __init__(self, color, value, parent):
-        self.color = color
-        self.value = value
-        self.parent = parent
-        self.left = None
-        self.right = None
+        self._color = color
+        self._value = value
+        self._parent = parent
+        self._left = None
+        self._right = None
 
     def change_color(self):
-        self.color = Color.RED if self.color == Color.BLACK else Color.RED
+        self._color = Color.RED if self._color == Color.BLACK else Color.RED
+
+    # Only getters for now. Add setters ONLY when needed.
+
+    @property
+    def color(self):
+        return self._color
+
+    @property
+    def value(self):
+        return self._value
+
+    @property
+    def parent(self):
+        return self._parent
+
+    @property
+    def left(self):
+        return self._left
+
+    @property
+    def right(self):
+        return self._right
