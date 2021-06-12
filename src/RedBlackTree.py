@@ -81,9 +81,9 @@ class RedBlackTree:
         # Case 2.2
         #    5(B)              5(B)
         #   /   \             /   \
-        #  3(R)  NIL  ====>  3(R)  NIL
-        #   \                 \
-        #   4(R)              4(R)
+        #  3(R)  NIL  ====>  4(R)  NIL
+        #   \                /
+        #   4(R)            3(R)
         if node is node.parent.right and\
            node.parent is node.parent.parent.left:
             self.left_rotate(node.parent)
@@ -91,11 +91,11 @@ class RedBlackTree:
             return
 
         # Case 3.1
-        #         5(B)
-        #        /   \
-        #       3(R)  NIL
-        #       /
-        #      2(R)
+        #    5(B)              3(B)
+        #   /   \             /   \
+        #  3(R)  NIL  ====>  2(R)  5(R)
+        #  /
+        # 2(R)
         if node is node.parent.left and\
            node.parent is node.parent.parent.left:
             node.parent.change_color()
@@ -104,11 +104,11 @@ class RedBlackTree:
             return
 
         # Case 3.2
-        #         5(B)
-        #        /   \
-        #       NIL   6(R)
-        #              \
-        #              7(R)
+        #   5(B)                6(B)
+        #  /   \               /   \
+        # NIL   6(R)   ====>  5(R)   7(R)
+        #        \
+        #        7(R)
         if node is node.parent.right and\
            node.parent is node.parent.parent.right:
             node.parent.change_color()
@@ -164,6 +164,7 @@ class RedBlackTree:
             print(str(node.value) + "(" + s_color + ")")
             self.__print_helper(node.left, indent, False)
             self.__print_helper(node.right, indent, True)
+
 
 tree = RedBlackTree()
 tree.insert(11)
