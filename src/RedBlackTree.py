@@ -5,11 +5,16 @@ class RedBlackTree:
     def __init__(self):
         self.root = None
         self.__checked_node = None
+        self.size = 0
 
     def search(self, value):
         return self.root is not None and self.root.search(value)
 
+    def get_size(self):
+        return self.size
+
     def insert(self, value):
+        self.size += 1
         if self.root is None:
             self.root = RedBlackNode(Color.BLACK, value, None)
             self.__checked_node = self.root
