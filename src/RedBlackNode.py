@@ -15,7 +15,7 @@ class RedBlackNode:
         self.right = None
 
     def change_color(self):
-        self.color = Color.RED if self.color == Color.BLACK else Color.RED
+        self.color = Color.RED if self.color == Color.BLACK else Color.BLACK
 
     def search(self, value):
         if self.value == value:
