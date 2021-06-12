@@ -1,3 +1,4 @@
+import sys
 from RedBlackNode import RedBlackNode, Color
 
 
@@ -120,6 +121,24 @@ class RedBlackTree:
         y.right = x
         x.parent = y
 
+    def pretty_print(self):
+        self.__print_helper(self.root, "", True)
+
+    def __print_helper(self, node, indent, last):
+        # print the tree structure on the screen
+        if node is not None:
+            sys.stdout.write(indent)
+            if last:
+                sys.stdout.write("R----")
+                indent += "     "
+            else:
+                sys.stdout.write("L----")
+                indent += "|    "
+
+            s_color = "RED" if node.color == Color.RED else "BLACK"
+            print(str(node.value) + "(" + s_color + ")")
+            self.__print_helper(node.left, indent, False)
+            self.__print_helper(node.right, indent, True)
 
 if __name__ == '__main__':
     tree = RedBlackTree()
