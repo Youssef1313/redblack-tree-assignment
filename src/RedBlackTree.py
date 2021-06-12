@@ -23,12 +23,9 @@ class RedBlackTree:
         return self.__get_height(self.root)
 
     def __get_height(self, node):
-        if node is None:
-            return 0
-        left = self.__get_height(node.left)
-        right = self.__get_height(node.right)
-        max_num = max(left, right) + 1
-        return max_num
+        return 0 if node is None\
+                    else max(self.__get_height(node.left),
+                             self.__get_height(node.right)) + 1
 
     def insert(self, value):
         if self.root is None:
