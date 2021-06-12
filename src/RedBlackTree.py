@@ -1,3 +1,4 @@
+import sys
 from RedBlackNode import RedBlackNode, Color
 
 
@@ -32,7 +33,7 @@ class RedBlackTree:
                     break
                 p = node.parent
                 g = node.parent.parent
-                if p.right == node:
+                if g.right == p:
                     u = g.left
                     # case 3.a
                     if u is not None:
@@ -51,6 +52,7 @@ class RedBlackTree:
                         # case 3.b2
                         if g.right == p and p.left == node:
                             self.right_rotate(p)
+                            node = p
                 else:
                     u = g.right
                     # case 3.a
@@ -69,8 +71,9 @@ class RedBlackTree:
                             p.change_color()
                             g.change_color()
                         # case 3.b2
-                        if g.right == p and p.left == node:
+                        if g.left == p and p.right == node:
                             self.left_rotate(p)
+                            node = p
             self.root.color = Color.BLACK
         self.size += 1
 
@@ -120,12 +123,40 @@ class RedBlackTree:
         y.right = x
         x.parent = y
 
+    def pretty_print(self):
+        self.__print_helper(self.root, "", True)
+
+    def __print_helper(self, node, indent, last):
+        # print the tree structure on the screen
+        if node is not None:
+            sys.stdout.write(indent)
+            if last:
+                sys.stdout.write("R----")
+                indent += "     "
+            else:
+                sys.stdout.write("L----")
+                indent += "|    "
+
+            s_color = "RED" if node.color == 1 else "BLACK"
+            print(str(node.value) + "(" + s_color + ")")
+            self.__print_helper(node.left, indent, False)
+            self.__print_helper(node.right, indent, True)
+
 
 if __name__ == '__main__':
     tree = RedBlackTree()
-    tree.insert(5)
+    tree.insert(2)
+    tree.insert(1)
     tree.insert(4)
+    tree.pretty_print()
+    tree.insert(5)
+    tree.insert(9)
+    tree.pretty_print()
     tree.insert(3)
+    tree.pretty_print()
     tree.insert(6)
+    tree.pretty_print()
+
     tree.insert(7)
+    tree.pretty_print()
     print('Done...')
