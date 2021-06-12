@@ -19,6 +19,17 @@ class RedBlackTree:
     def get_size(self):
         return self.size
 
+    def get_height(self):
+        return self.__get_height(self.root)
+
+    def __get_height(self, node):
+        if node is None:
+            return 0
+        left = self.__get_height(node.left)
+        right = self.__get_height(node.right)
+        max_num = max(left, right) + 1
+        return max_num
+
     def insert(self, value):
         if self.root is None:
             self.root = RedBlackNode(Color.BLACK, value, None)
@@ -128,4 +139,5 @@ if __name__ == '__main__':
     tree.insert(3)
     tree.insert(6)
     tree.insert(7)
+    print(tree.get_height())
     print('Done...')
