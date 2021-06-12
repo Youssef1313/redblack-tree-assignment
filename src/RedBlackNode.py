@@ -16,10 +16,3 @@ class RedBlackNode:
 
     def change_color(self):
         self.color = Color.RED if self.color == Color.BLACK else Color.BLACK
-
-    def search(self, value):
-        if self.value == value:
-            return True
-        if self.value > value:
-            return self.left is not None and self.left.search(value)
-        return self.right is not None and self.right.search(value)
