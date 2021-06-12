@@ -119,7 +119,7 @@ class RedBlackTree:
         elif x == x.parent.right:
             x.parent.right = y
         else:
-            x.parent.keft = y
+            x.parent.left = y
         y.right = x
         x.parent = y
 
