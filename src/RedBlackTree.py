@@ -5,7 +5,6 @@ from RedBlackNode import RedBlackNode, Color
 class RedBlackTree:
     def __init__(self):
         self.root = None
-        self.size = 0
 
     def _search(self, node, value):
         if node.value == value:
