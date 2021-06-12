@@ -4,7 +4,6 @@ from RedBlackNode import RedBlackNode, Color
 class RedBlackTree:
     def __init__(self):
         self.root = None
-        self.__checked_node = None
         self.size = 0
 
     def _search(self, node, value):
@@ -24,16 +23,16 @@ class RedBlackTree:
         self.size += 1
         if self.root is None:
             self.root = RedBlackNode(Color.BLACK, value, None)
-            self.__checked_node = self.root
+            node = self.root
             return
         else:
-            self.bst_insert(self.root, value, None)
-            while self.__checked_node != self.root:
-                if self.__checked_node.parent.color != Color.RED:
+            node = self.bst_insert(self.root, value)
+            while node != self.root:
+                if node.parent.color != Color.RED:
                     break
-                p = self.__checked_node.parent
-                g = self.__checked_node.parent.parent
-                if p.right == self.__checked_node:
+                p = node.parent
+                g = node.parent.parent
+                if p.right == node:
                     u = g.left
                     # case 3.a
                     if u is not None:
@@ -41,16 +40,16 @@ class RedBlackTree:
                             p.change_color()
                             u.change_color()
                             g.change_color()
-                        self.__checked_node = g
+                        node = g
                     # case 3.b
                     if u is None or u.color == Color.BLACK:
                         # case 3.b1
-                        if g.right == p and p.right == self.__checked_node:
+                        if g.right == p and p.right == node:
                             self.left_rotate(g)
                             p.change_color()
                             g.change_color()
                         # case 3.b2
-                        if g.right == p and p.left == self.__checked_node:
+                        if g.right == p and p.left == node:
                             self.right_rotate(p)
                 else:
                     u = g.right
@@ -60,30 +59,35 @@ class RedBlackTree:
                             p.change_color()
                             u.change_color()
                             g.change_color()
-                        self.__checked_node = g
+                        node = g
 
                     # case 3.b
                     if u is None or u.color == Color.BLACK:
                         # case 3.b1
-                        if g.left == p and p.left == self.__checked_node:
+                        if g.left == p and p.left == node:
                             self.right_rotate(g)
                             p.change_color()
                             g.change_color()
                         # case 3.b2
-                        if g.right == p and p.left == self.__checked_node:
+                        if g.right == p and p.left == node:
                             self.left_rotate(p)
             self.root.color = Color.BLACK
 
-    def bst_insert(self, node, value, parent):
-        if node is None:
-            new_node = RedBlackNode(Color.RED, value, parent)
-            self.__checked_node = new_node
-            return new_node
+    def bst_insert(self, node, value):
+        if node.value == value:
+            raise ValueError("The value is already in the tree.")
         if node.value < value:
-            node.right = self.bst_insert(node.right, value, node)
-        else:
-            node.left = self.bst_insert(node.left, value, node)
-        return node
+            if node.right is None:
+                new_node = RedBlackNode(Color.RED, value, node)
+                node.right = new_node
+                return new_node
+            return self.bst_insert(node.right, value)
+        # Here we know that node.value > value
+        if node.left is None:
+            new_node = RedBlackNode(Color.RED, value, node)
+            node.left = new_node
+            return new_node
+        return self.bst_insert(node.left, value)
 
     def left_rotate(self, x):
         y = x.right
