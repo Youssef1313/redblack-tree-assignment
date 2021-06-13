@@ -12,7 +12,7 @@ while True:
     print('Press 2 to print a size')
     print('Press 3 to print a height')
     print('Press 4 to search')
-    print('Press 0 to save & exit')
+    print('Press 0 to exit')
     option = input('Your option : ')
     if option == '1':
         w = input('Enter the word : ')
@@ -20,15 +20,14 @@ while True:
             tree.insert(w)
         except Exception as e:
             print(e)
+        print(tree.get_size())
+        print(tree.get_height())
     elif option == '2':
         print(tree.get_size())
     elif option == '3':
         print(tree.get_height())
     elif option == '4':
         w = input('Enter the word to search : ')
-        try:
-            print(tree.search(w))
-        except Exception as e:
-            print(e)
+        print(tree.search(w))
     else:
         break
