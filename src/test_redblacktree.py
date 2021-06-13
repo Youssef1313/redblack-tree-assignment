@@ -94,7 +94,7 @@ def test_right_left():
     right = root.right
     assert right.color == Color.RED
     assert right.value == 3
-    assert right.parent is None
+    assert right.parent is root
     assert right.left is None
     assert right.right is None
 
@@ -152,7 +152,7 @@ def test_left_uncle():
     right = root.right
     assert right.color == Color.BLACK
     assert right.value == 3
-    assert right.parent is None
+    assert right.parent is root
     assert right.left is None
     right_right = right.right
     assert right_right.color == Color.RED
