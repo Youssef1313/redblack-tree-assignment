@@ -66,7 +66,7 @@ class RedBlackTree:
                 self._fixup(node.parent.parent)
             return
 
-        # Case 2.1
+        # Case 2.1 followed by case 3
         #    5(B)              5(B)
         #   /   \             /   \
         # NIL  7(R)  ====>  NIL  6(R)
@@ -74,7 +74,14 @@ class RedBlackTree:
         #    6(R)                  7(R)
         if node is node.parent.left and\
            node.parent is node.parent.parent.right:
+            # Recolor the nodes 6 and 5 in the example.
+            node.change_color()
+            node.parent.parent.change_color()
+
+            # rotate 7(R) node in the example above.
             self.right_rotate(node.parent)
+
+            # rotate 5(B) node in the example above.
             self.left_rotate(node.parent)
             return
 
@@ -86,8 +93,14 @@ class RedBlackTree:
         #   4(R)            3(R)
         if node is node.parent.right and\
            node.parent is node.parent.parent.left:
-            self.left_rotate(node.parent) # rotate 3(R) node in the example above.
-            self.right_rotate(node.parent) # rotate 5(B) node in the example above.
+            node.change_color()
+            node.parent.parent.change_color()
+
+            # rotate 3(R) node in the example above.
+            self.left_rotate(node.parent)
+
+            # rotate 5(B) node in the example above.
+            self.right_rotate(node.parent)
             return
 
         # Case 3.1
