@@ -22,6 +22,16 @@ class RedBlackTree:
         return self.root is not None and\
                self._search(self.root, value).value == value
 
+    def get_size(self):
+        return self.__get_size(self.root)
+
+    def __get_size(self, node):
+        if node is None:
+            return 0
+        else:
+            return self.__get_size(node.left) +\
+                self.__get_size(node.right) + 1
+
     def insert(self, value):
         if self.root is None:
             # Tree is empty. Insert a black root.

@@ -11,7 +11,7 @@ def empty_tree():
 def test_empty_tree():
     tree = empty_tree()
     assert not tree.search(0)
-    # assert tree.size == 0
+    assert tree.get_size() == 0
     # TODO: assert height
 
 
@@ -24,7 +24,7 @@ def test_left_left():
     assert tree.search(2)
     assert tree.search(3)
     assert not tree.search(4)
-    # assert tree.size == 3
+    assert tree.get_size() == 3
     root = tree.root
     assert root.color == Color.BLACK
     assert root.value == 2
@@ -52,7 +52,7 @@ def test_left_right():
     assert tree.search(2)
     assert tree.search(3)
     assert not tree.search(4)
-    # assert tree.size == 3
+    assert tree.get_size() == 3
     root = tree.root
     assert root.parent is None
     assert root.color == Color.BLACK
@@ -80,7 +80,7 @@ def test_right_left():
     assert tree.search(2)
     assert tree.search(3)
     assert not tree.search(4)
-    # assert tree.size == 3
+    assert tree.get_size() == 3
     root = tree.root
     assert root.color == Color.BLACK
     assert root.value == 2
@@ -108,7 +108,7 @@ def test_right_right():
     assert tree.search(2)
     assert tree.search(3)
     assert not tree.search(4)
-    # assert tree.size == 3
+    assert tree.get_size() == 3
     root = tree.root
     assert root.color == Color.BLACK
     assert root.value == 2
@@ -138,7 +138,7 @@ def test_left_uncle():
     assert tree.search(3)
     assert tree.search(4)
     assert not tree.search(5)
-    # assert tree.size == 4
+    assert tree.get_size() == 4
     root = tree.root
     assert root.color == Color.BLACK
     assert root.value == 2
@@ -201,7 +201,7 @@ def test_right_uncle():
     assert tree.search(3)
     assert tree.search(4)
     assert not tree.search(5)
-    # assert tree.size == 4
+    assert tree.get_size() == 4
     root = tree.root
     assert root.color == Color.BLACK
     assert root.value == 3
@@ -274,7 +274,7 @@ def test_larger_case():
     assert tree.search(90)
     assert tree.search(59)
     assert not tree.search(5)
-    # assert tree.size == 9
+    assert tree.get_size() == 9
     root = tree.root
     assert root.color == Color.BLACK
     assert root.value == 44
