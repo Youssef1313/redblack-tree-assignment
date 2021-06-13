@@ -3,7 +3,7 @@
     "python.linting.pycodestyleEnabled": true,
     "python.linting.enabled": true,
     "python.testing.pytestArgs": [
-        "tests"
+        "."
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.nosetestsEnabled": false,
