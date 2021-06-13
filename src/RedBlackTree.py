@@ -75,7 +75,7 @@ class RedBlackTree:
         if node is node.parent.left and\
            node.parent is node.parent.parent.right:
             self.right_rotate(node.parent)
-            self.left_rotate(node.parent.parent)
+            self.left_rotate(node.parent)
             return
 
         # Case 2.2
@@ -86,8 +86,8 @@ class RedBlackTree:
         #   4(R)            3(R)
         if node is node.parent.right and\
            node.parent is node.parent.parent.left:
-            self.left_rotate(node.parent)
-            self.right_rotate(node.parent.parent)
+            self.left_rotate(node.parent) # rotate 3(R) node in the example above.
+            self.right_rotate(node.parent) # rotate 5(B) node in the example above.
             return
 
         # Case 3.1
@@ -166,46 +166,46 @@ class RedBlackTree:
             self.__print_helper(node.right, indent, True)
 
 
-tree = RedBlackTree()
-tree.insert(11)
-tree.pretty_print()
-print("============")
-tree.insert(3)
-tree.pretty_print()
-print("============")
-tree.insert(13)
-tree.pretty_print()
-print("============")
-tree.insert(1)
-tree.pretty_print()
-print("============")
-tree.insert(7)
-tree.pretty_print()
-print("============")
-tree.insert(15)
-tree.pretty_print()
-print("============")
-tree.insert(5)
-tree.pretty_print()
-print("============")
-tree.insert(8)
-tree.pretty_print()
-print("============")
-
-
 # tree = RedBlackTree()
-# tree.insert(5)
+# tree.insert(11)
 # tree.pretty_print()
-# print("=============")
-# tree.insert(4)
-# tree.pretty_print()
-# print("=============")
+# print("============")
 # tree.insert(3)
 # tree.pretty_print()
-# print("=============")
-# tree.insert(6)
+# print("============")
+# tree.insert(13)
 # tree.pretty_print()
-# print("=============")
+# print("============")
+# tree.insert(1)
+# tree.pretty_print()
+# print("============")
 # tree.insert(7)
 # tree.pretty_print()
-# print("=============")
+# print("============")
+# tree.insert(15)
+# tree.pretty_print()
+# print("============")
+# tree.insert(5)
+# tree.pretty_print()
+# print("============")
+# tree.insert(8)
+# tree.pretty_print()
+# print("============")
+
+
+# # tree = RedBlackTree()
+# # tree.insert(5)
+# # tree.pretty_print()
+# # print("=============")
+# # tree.insert(4)
+# # tree.pretty_print()
+# # print("=============")
+# # tree.insert(3)
+# # tree.pretty_print()
+# # print("=============")
+# # tree.insert(6)
+# # tree.pretty_print()
+# # print("=============")
+# # tree.insert(7)
+# # tree.pretty_print()
+# # print("=============")
