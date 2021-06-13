@@ -178,6 +178,9 @@ class RedBlackTree:
             self.__print_helper(node.left, indent, False)
             self.__print_helper(node.right, indent, True)
 
+    def get_height(self):
+        return self.__get_height(self.root)
+
     def __get_height(self, node):
         return 0 if node is None\
                 else max(self.__get_height(node.left),
