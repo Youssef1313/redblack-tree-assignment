@@ -1,6 +1,5 @@
 from RedBlackTree import RedBlackTree
 # Read file Data
-words = []
 tree = RedBlackTree()
 with open("EN-US-Dictionary.txt") as f:
     for word in f:
@@ -20,12 +19,12 @@ while True:
             tree.insert(w)
         except Exception as e:
             print(e)
-        print(tree.get_size())
-        print(tree.get_height())
+        print(f"Size: {tree.get_size()}")
+        print(f"Height: {tree.get_height()}")
     elif option == '2':
-        print(tree.get_size())
+        print(f"Size: {tree.get_size()}")
     elif option == '3':
-        print(tree.get_height())
+        print(f"Height: {tree.get_height()}")
     elif option == '4':
         w = input('Enter the word to search : ')
         print(tree.search(w))
