@@ -27,6 +27,6 @@ while True:
         print(f"Height: {tree.get_height()}")
     elif option == '4':
         w = input('Enter the word to search : ')
-        print(tree.search(w))
+        print('Found' if tree.search(w) else 'Not Found')
     else:
         break
