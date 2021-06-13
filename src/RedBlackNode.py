@@ -7,7 +7,7 @@ class Color(Enum):
 
 
 class RedBlackNode:
-    def __init__(self, color, value, parent):
+    def __init__(self, value, color=Color.RED, parent=None):
         self.color = color
         self.value = value
         self.parent = parent
