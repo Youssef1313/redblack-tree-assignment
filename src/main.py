@@ -43,7 +43,7 @@ while True:
         print_height(tree)
     elif option == '4':
         w = input('Enter the word to search: ')
-        print('Found' if tree.search(w) else 'Not Found')
+        print('YES' if tree.search(w) else 'NO')
     elif option == '0':
         break
     else:
